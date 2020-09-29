@@ -99,11 +99,11 @@ bot.on('message', message => {
                 break;
             }
         case 'clear':
-            playerArray = []
+            playerArray.splice(0, arr.length)
             message.channel.send('Team cleared');
             teamSpaceAvailable = 5;
-            gameName = '';
-            playerArrString = '';
+            gameName.setText('');
+            playerArrString.setText('');
             break;
         case 'check':
             message.channel.send(`Team: ${playerArray} | Game: ${gameName}`);
