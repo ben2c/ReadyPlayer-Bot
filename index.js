@@ -6,7 +6,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 let user_id = 0;
 //const token = 'NzU1NTIzOTQ0NDIwODY4MTA2.X2EigQ.kJ0Q3RDN2JmKA8I2xrhlBXICiRQ';
-bot.login(process.env.token);
+bot.login(process.env.TOKEN);
 
 let playerArray = [];
 var teamSpaceAvailable = 5;
@@ -156,5 +156,5 @@ bot.on('message', message => {
 })
 
 
-bot.login(token);
+//bot.login(token);
 
