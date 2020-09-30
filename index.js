@@ -5,8 +5,8 @@ console.log(message)
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 let user_id = 0;
-//const token = 'NzU1NTIzOTQ0NDIwODY4MTA2.X2EigQ.kJ0Q3RDN2JmKA8I2xrhlBXICiRQ';
-bot.login(process.env.TOKEN);
+const TOKEN = 'NzU1NTIzOTQ0NDIwODY4MTA2.X2EigQ.kJ0Q3RDN2JmKA8I2xrhlBXICiRQ';
+//bot.login(process.env.TOKEN);
 
 let playerArray = [];
 var teamSpaceAvailable = 5;
@@ -99,11 +99,11 @@ bot.on('message', message => {
                 break;
             }
         case 'clear':
-            playerArray.splice(0, arr.length)
+            playerArray.splice(0, playerArray.length);
             message.channel.send('Team cleared');
             teamSpaceAvailable = 5;
-            gameName.setText('');
-            playerArrString.setText('');
+            gameName = '';
+            playerArrString.splice(0, playerArrString.length);
             break;
         case 'check':
             message.channel.send(`Team: ${playerArray} | Game: ${gameName}`);
@@ -156,5 +156,5 @@ bot.on('message', message => {
 })
 
 
-//bot.login(token);
+bot.login(TOKEN);
 
