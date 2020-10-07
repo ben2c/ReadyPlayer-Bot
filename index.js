@@ -1,11 +1,11 @@
-/* Notes:
-console.log(message)
-
-*/
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 let user_id = 0;
+
+//(1) Needed for direct execution from VSC 
 const TOKEN = 'NzU1NTIzOTQ0NDIwODY4MTA2.X2EigQ.kJ0Q3RDN2JmKA8I2xrhlBXICiRQ';
+
+//(2) Needed for Heroku hosting
 //bot.login(process.env.TOKEN);
 
 let playerArray = [];
@@ -84,8 +84,8 @@ bot.on('message', message => {
         case 'nr':
             if (playerArray.indexOf('<@'+ message.author.id +'>') != -1) {
                 let x = playerArray.indexOf('<@'+ message.author.id +'>');
-                playerArray.splice(x)
-                playerArrString.splice(x)
+                playerArray.splice(x,1)
+                playerArrString.splice(x,1)
                 teamSpaceAvailable++;
                 message.channel.send('You\'ve been removed from the queue')
                 if(playerArray.length === 0)
