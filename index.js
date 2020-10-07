@@ -15,7 +15,7 @@ let gameName = ' ';
 let playerArrString = [];
 
 bot.on('ready', () => {
-    console.log('The bot is online!');
+    console.log('The bot is online!!');
     var isReady = true;       
     })
 
@@ -88,10 +88,6 @@ bot.on('message', message => {
                 playerArrString.splice(x,1)
                 teamSpaceAvailable++;
                 message.channel.send('You\'ve been removed from the queue')
-                if(playerArray.length === 0)
-                     message.channel.send(`No one on team so far, missing ${teamSpaceAvailable} more players`);
-                else
-                    message.channel.send(`Team: ${playerArrString} so far, missing ${teamSpaceAvailable} more players`);
                 break;
             }
                 else {
