@@ -122,8 +122,8 @@ bot.on('message', message => {
         case 'remove' :
             if (playerArray.indexOf('<@'+args[1].slice(3,args[1].length-1)+'>') != -1) {
                 var y = playerArray.indexOf('<@'+args[1].slice(3,args[1].length-1)+'>');
-                playerArray.splice(y);
-                playerArrString.splice(y);
+                playerArray.splice(y,1);
+                playerArrString.splice(y,1);
                 teamSpaceAvailable++;
                 message.channel.send(`${args[1]} removed`);
                 break;
