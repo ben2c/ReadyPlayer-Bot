@@ -151,6 +151,6 @@ bot.on('message', message => {
    
 })
 
-
-bot.login(TOKEN);
+//(1)for local deployment
+//bot.login(TOKEN);
 
