@@ -3,10 +3,10 @@ const bot = new Discord.Client();
 let user_id = 0;
 
 //(1) Needed for direct execution from VSC 
-const TOKEN = 'NzU1NTIzOTQ0NDIwODY4MTA2.X2EigQ.kJ0Q3RDN2JmKA8I2xrhlBXICiRQ';
+//const TOKEN = '';
 
 //(2) Needed for Heroku hosting
-//bot.login(process.env.TOKEN);
+bot.login(process.env.TOKEN);
 
 let playerArray = [];
 var teamSpaceAvailable = 5;
