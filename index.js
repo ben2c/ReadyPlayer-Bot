@@ -81,12 +81,12 @@ bot.on('message', message => {
                 message.channel.send('You\'ve already been added to the queue');
                 break;
             }
-            else if (teamSpaceAvailable = 0){
+            else if (teamSpaceAvailable === 0){
                 message.channel.send('The party is full')
                 break;
             }
         case 'nr':
-            if (playerArray.indexOf('<@'+ message.author.id +'>') != -1) {
+            if (playerArray.indexOf('<@'+ message.author.id +'>') !== -1) {
                 let x = playerArray.indexOf('<@'+ message.author.id +'>');
                 playerArray.splice(x,1)
                 playerArrString.splice(x,1)
