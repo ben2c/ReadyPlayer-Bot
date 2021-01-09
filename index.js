@@ -9,7 +9,7 @@ let user_id = 0;
 bot.login(process.env.TOKEN);
 
 let playerArray = [];
-var teamSpaceAvailable = 2;
+var teamSpaceAvailable = 5;
 const prefix = '!';
 let gameName = ' ';
 let playerArrString = [];
