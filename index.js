@@ -64,7 +64,7 @@ bot.on('message', message => {
                 break;
             }
         case 'r':
-            if (playerArray.indexOf('<@'+ message.author.id +'>') === -1 && teamSpaceAvailable<6) {
+            if (playerArray.indexOf('<@'+ message.author.id +'>') === -1 && teamSpaceAvailable<5) {
                 playerArray.push('<@'+ message.author.id +'>');
                 playerArrString.push(message.author.username);
                 teamSpaceAvailable--;
@@ -77,8 +77,12 @@ bot.on('message', message => {
                         
                 break;
             }
-            else {
+            else if (playerArray.indexOf('<@'+ message.author.id +'>') === -1) {
                 message.channel.send('You\'ve already been added to the queue');
+                break;
+            }
+            else if (teamSpaceAvailable = 5){
+                message.channel.send('The party is full')
                 break;
             }
         case 'nr':
