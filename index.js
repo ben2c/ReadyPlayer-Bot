@@ -77,7 +77,7 @@ bot.on('message', message => {
                         
                 break;
             }
-            else if (playerArray.indexOf('<@'+ message.author.id +'>') === -1) {
+            else if (playerArray.indexOf('<@'+ message.author.id +'>') !== -1) {
                 message.channel.send('You\'ve already been added to the queue');
                 break;
             }
