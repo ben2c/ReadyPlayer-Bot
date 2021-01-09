@@ -137,20 +137,6 @@ bot.on('message', message => {
                 message.channel.send('@player not found/no name entered');
                 break;
             }
-        /*case 'add':
-            if (playerArray.indexOf('<@'+args[1].slice(3,args[1].length-1)+'>') === -1) {
-                playerArray.push('<@'+args[1].slice(3,args[1].length-1)+'>');
-                playerArrString.push(('<@'+args[1].slice(3,args[1].length-1)+'>'))
-                console.log(('<@'+args[1].slice(3,args[1].length-1)+'>'))
-                teamSpaceAvailable--;
-                message.channel.send(`${args[1]} added`);
-                break;
-            }
-            else {
-                console.log(playerArray)
-                message.channel.send('@player not found/no name entered');
-                break;
-            }*/
     }
    
 })
