@@ -45,7 +45,7 @@ bot.on('message', message => {
     
     var voiceChannel = message.member.voice.channel;
     var isReady = true;
-    if (!message.content.startsWith('!')) return;
+    if (!message.content.startsWith('$')) return;
 
     let args= message.content.substring(prefix.length).toLowerCase().split(" ");
 
