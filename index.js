@@ -10,7 +10,7 @@ bot.login(process.env.TOKEN);
 
 let playerArray = [];
 var teamSpaceAvailable = 5;
-const prefix = '!';
+const prefix = '$';
 let gameName = ' ';
 let playerArrString = [];
 
@@ -111,7 +111,7 @@ bot.on('message', message => {
         case 'leave' :
             voiceChannel.leave();
             break;
-        case 'join' :
+        case 'reviveme' :
             if (isReady && message.content === '!join') {
                 const channel = bot.channels.cache.get("389588830316920833");
             if (!channel) return console.error("The channel does not exist!");
