@@ -10,7 +10,7 @@ bot.login(process.env.TOKEN);
 
 let playerArray = [];
 var teamSpaceAvailable = 5;
-const prefix = '$';
+const prefix = '?';
 let gameName = ' ';
 let playerArrString = [];
 
@@ -45,7 +45,7 @@ bot.on('message', message => {
     
     var voiceChannel = message.member.voice.channel;
     var isReady = true;
-    if (!message.content.startsWith('$')) return;
+    if (!message.content.startsWith('?')) return;
 
     let args= message.content.substring(prefix.length).toLowerCase().split(" ");
 
