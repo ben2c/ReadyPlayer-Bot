@@ -8,7 +8,7 @@ let user_id = 0;
 //(2) Needed for Heroku hosting
 bot.login(process.env.TOKEN);
 
-let prefix = '*';
+let prefix = '?';
 let playerArray1 = [];
 let playerArray2 = [];
 var teamSpaceAvailable1 = 5;
@@ -49,7 +49,7 @@ bot.on('message', message => {
     
     //var voiceChannel = message.member.voice.channel;
     var isReady = true;
-    if (!message.content.startsWith('*')) return;
+    if (!message.content.startsWith('?')) return;
 
     let args= message.content.substring(prefix.length).toLowerCase().split(" ");
 
