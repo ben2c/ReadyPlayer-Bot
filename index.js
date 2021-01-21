@@ -8,11 +8,15 @@ let user_id = 0;
 //(2) Needed for Heroku hosting
 bot.login(process.env.TOKEN);
 
-let playerArray = [];
-var teamSpaceAvailable = 5;
-const prefix = '?';
-let gameName = ' ';
-let playerArrString = [];
+let prefix = '*';
+let playerArray1 = [];
+let playerArray2 = [];
+var teamSpaceAvailable1 = 5;
+var teamSpaceAvailable2 = 5;
+let gameName1 = ' ';
+let gameName2 = ' ';
+let playerArrString1 = [];
+let playerArrString2 = [];
 
 bot.on('ready', () => {
     console.log('The bot is online!!');
@@ -43,70 +47,135 @@ bot.on('ready', () => {
 
 bot.on('message', message => {
     
-    var voiceChannel = message.member.voice.channel;
+    //var voiceChannel = message.member.voice.channel;
     var isReady = true;
-    if (!message.content.startsWith('?')) return;
+    if (!message.content.startsWith('*')) return;
 
     let args= message.content.substring(prefix.length).toLowerCase().split(" ");
 
     switch(args[0]){
         case 'help':
-            message.channel.send('-r\n-nr\n-game\n-clear\n-check');
+            message.channel.send('-r(1/2)\n-nr(1/2)\n-game(1/2)\n-clear(1/2)\n-check');
             break;
-        case 'game':
+        case 'game1':
             if (args[1]!=undefined) {
-                gameName = (args[1]).toUpperCase();
-                message.channel.send(`GUESS WE\'RE PLAYING ${gameName}`);
+                gameName1 = (args[1]).toUpperCase();
+                message.channel.send(`Queue 1 game: ${gameName1}`);
                 break;
             }
             else {
-                message.channel.send('Please retry with a game. !game [Game]');
+                message.channel.send('Please retry with a game. !game1 [Game]');
                 break;
             }
-        case 'r':
-            if (playerArray.indexOf('<@'+ message.author.id +'>') === -1 && teamSpaceAvailable>0) {
-                playerArray.push('<@'+ message.author.id +'>');
-                playerArrString.push(message.author.username);
-                teamSpaceAvailable--;
-                if(teamSpaceAvailable >1)
-                    message.channel.send(`You\'ve been added to the queue\nTeam: ${playerArrString}, missing ${teamSpaceAvailable} more players`)
-                if(teamSpaceAvailable === 1)
-                    message.channel.send(`You\'ve been added to the queue\nTeam: ${playerArrString}, missing ${teamSpaceAvailable} more player!`)
-                if(playerArray.length === 5)
-                    message.channel.send(`${playerArray}\nGUESS IT\'S TIME TO PLAY ${gameName}!??!`);
-                        
+        case 'game2':
+            if (args[1]!=undefined) {
+                gameName2 = (args[1]).toUpperCase();
+                message.channel.send(`Queue 2 game: ${gameName2}`);
                 break;
             }
-            else if (playerArray.indexOf('<@'+ message.author.id +'>') !== -1) {
-                message.channel.send('You\'ve already been added to the queue');
+            else {
+                message.channel.send('Please retry with a game. !game2 [Game]');
                 break;
             }
-            else if (teamSpaceAvailable === 0){
-                message.channel.send('The party is full')
+        case 'r1':
+            if (playerArray1.indexOf('<@'+ message.author.id +'>') === -1 && teamSpaceAvailable1>0) {
+                playerArray1.push('<@'+ message.author.id +'>');
+                playerArrString1.push(message.author.username);
+                teamSpaceAvailable1--;
+                if(teamSpaceAvailable1 >1)
+                    message.channel.send(`You\'ve been added to queue 1\nTeam: ${playerArrString1}, missing ${teamSpaceAvailable1} more players`)
+                if(teamSpaceAvailable1 === 1)
+                    message.channel.send(`You\'ve been added to queue 1\nTeam: ${playerArrString1}, missing ${teamSpaceAvailable1} more player!`)
+                if(playerArray1.length === 5)
+                    message.channel.send(`HELLOOO ${playerArray1}\nGUESS IT\'S TIME TO PLAY ${gameName1}!??!`);
                 break;
             }
-        case 'nr':
-            if (playerArray.indexOf('<@'+ message.author.id +'>') !== -1) {
-                let x = playerArray.indexOf('<@'+ message.author.id +'>');
-                playerArray.splice(x,1)
-                playerArrString.splice(x,1)
-                teamSpaceAvailable++;
-                message.channel.send('You\'ve been removed from the queue')
+            else if (playerArray1.indexOf('<@'+ message.author.id +'>') !== -1) {
+                message.channel.send('You\'ve already been added to queue 1');
+                break;
+            }
+            else if (teamSpaceAvailable1 === 0){
+                message.channel.send('Queue 1 is full')
+                break;
+            }
+        break;
+        case 'r2':
+            if (playerArray2.indexOf('<@'+ message.author.id +'>') === -1 && teamSpaceAvailable2>0) {
+                playerArray2.push('<@'+ message.author.id +'>');
+                playerArrString2.push(message.author.username);
+                teamSpaceAvailable2--;
+                if(teamSpaceAvailable2 >1)
+                    message.channel.send(`You\'ve been added to queue 2\nTeam: ${playerArrString2}, missing ${teamSpaceAvailable2} more players`)
+                if(teamSpaceAvailable2 === 1)
+                    message.channel.send(`You\'ve been added to queue 2\nTeam: ${playerArrString2}, missing ${teamSpaceAvailable2} more player!`)
+                if(playerArray2.length === 5)
+                    message.channel.send(`HELLOOO ${playerArray2}\nGUESS IT\'S TIME TO PLAY ${gameName2}!??!`);
+                break;
+            }
+            else if (playerArray2.indexOf('<@'+ message.author.id +'>') !== -1) {
+                message.channel.send('You\'ve already been added to queue 2');
+                break;
+            }
+            else if (teamSpaceAvailable2 === 0){
+                message.channel.send('Queue 2 is full')
+                break;
+            }
+        break;
+        case 'nr1':
+            if (playerArray1.indexOf('<@'+ message.author.id +'>') !== -1) {
+                let x = playerArray1.indexOf('<@'+ message.author.id +'>');
+                playerArray1.splice(x,1)
+                playerArrString1.splice(x,1)
+                teamSpaceAvailable1++;
+                message.channel.send('You\'ve been removed from queue 1')
                 break;
             }
                 else {
-                message.channel.send('You\'re already removed from the queue');
+                message.channel.send('You\'re already removed from queue 1');
                 break;
             }
-        case 'clear':
-            playerArray.splice(0, playerArray.length);
-            message.channel.send('Team cleared');
-            teamSpaceAvailable = 5;
-            gameName = '';
-            playerArrString.splice(0, playerArrString.length);
+        case 'nr2':
+            if (playerArray2.indexOf('<@'+ message.author.id +'>') !== -1) {
+                let x = playerArray2.indexOf('<@'+ message.author.id +'>');
+                playerArray2.splice(x,1)
+                playerArrString2.splice(x,1)
+                teamSpaceAvailable2++;
+                message.channel.send('You\'ve been removed from queue 2')
+                break;
+            }
+                else {
+                message.channel.send('You\'re already removed from queue 2');
+                break;
+            }        
+        case 'clear1':
+            playerArray1.splice(0, playerArray1.length);
+            message.channel.send('Queue 1 cleared');
+            teamSpaceAvailable1 = 5;
+            gameName1 = '';
+            playerArrString1.splice(0, playerArrString1.length);
+            break;
+        case 'clear2':
+            playerArray2.splice(0, playerArray2.length);
+            message.channel.send('Queue 2 cleared');
+            teamSpaceAvailable2 = 5;
+            gameName2 = '';
+            playerArrString2.splice(0, playerArrString2.length);
             break;
         case 'check':
-            message.channel.send(`Team: ${playerArray} | Game: ${gameName}`);
+            message.channel.send(`Queue 1: ${playerArray1} | Game: ${gameName1}`);
+            message.channel.send(`Queue 2: ${playerArray2} | Game: ${gameName2}`);
+            break;
+        case 'game':
+            message.channel.send('Please enter game(1/2) [game]')
+            break;
+        case 'nr':
+            message.channel.send('Please enter nr(1/2)')
+            break;
+        case 'r':
+            message.channel.send('Please enter r(1/2)')
+            break;
+        case 'clear':
+            message.channel.send('Please enter clear(1/2)')
             break;
         case 'leave' :
             voiceChannel.leave();
@@ -124,16 +193,16 @@ bot.on('message', message => {
                 break;
             }
         case 'remove' :
-            if (playerArray.indexOf('<@'+args[1].slice(3,args[1].length-1)+'>') != -1) {
-                var y = playerArray.indexOf('<@'+args[1].slice(3,args[1].length-1)+'>');
-                playerArray.splice(y,1);
-                playerArrString.splice(y,1);
-                teamSpaceAvailable++;
+            if (playerArray1.indexOf('<@'+args[1].slice(3,args[1].length-1)+'>') != -1) {
+                var y = playerArray1.indexOf('<@'+args[1].slice(3,args[1].length-1)+'>');
+                playerArray1.splice(y,1);
+                playerArrString1.splice(y,1);
+                teamSpaceAvailable1++;
                 message.channel.send(`${args[1]} removed`);
                 break;
             }
             else {
-                console.log(playerArray)
+                console.log(playerArray1)
                 message.channel.send('@player not found/no name entered');
                 break;
             }
