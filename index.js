@@ -207,7 +207,7 @@ bot.on('message', message => {
                 break;
             }
         case 'r3' :
-            message.channel.send(`You know who's a slacker?? Not this kid --->>${message.author.username}<<---`);
+            message.channel.send(`You know who's a slacker?? Not this kid --->> ${message.author.username} <<---`);
         /*case 'poll' :
             const Embed = new RichEmbed()
             .setColor(0xFFC300)
