@@ -206,6 +206,8 @@ bot.on('message', message => {
                 message.channel.send('@player not found/no name entered');
                 break;
             }
+        case 'r3' :
+            message.channel.send(`You know who's a slacker?? Not this kid --->>${message.author.username}<<---`);
         /*case 'poll' :
             const Embed = new RichEmbed()
             .setColor(0xFFC300)
