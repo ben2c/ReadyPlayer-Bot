@@ -206,6 +206,23 @@ bot.on('message', message => {
                 message.channel.send('@player not found/no name entered');
                 break;
             }
+        /*case 'poll' :
+            const Embed = new RichEmbed()
+            .setColor(0xFFC300)
+            .setTitle("Initiate Poll")
+            .setDescription('Poll')
+
+            if(!args[1]){
+                message.channel.send(Embed);
+            }
+
+            let msgArgs = args.slice(1).join(" ");
+
+            message.channel.send(msgArgs).then(messageReaction => {
+
+            })
+
+            break;*/
     }
    
 })
