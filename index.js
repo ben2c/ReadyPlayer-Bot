@@ -9,14 +9,10 @@ let user_id = 0;
 bot.login(process.env.TOKEN);
 
 let prefix = '?';
-let playerArray1 = [];
-let playerArray2 = [];
-var teamSpaceAvailable1 = 5;
-var teamSpaceAvailable2 = 5;
-let gameName1 = ' ';
-let gameName2 = ' ';
-let playerArrString1 = [];
-let playerArrString2 = [];
+let [playerArray1, playerArray2, playerArray3] = [[], [], []];
+var [teamSpaceAvailable1, teamSpaceAvailable2, teamSpaceAvailable3] = [5,5,4];
+let [gameName1, gameName2, gameName3] = ['', '', ''];
+let [playerArrString1, playerArrString2, playerArrString3] = [[],[],[]];
 
 bot.on('ready', () => {
     console.log('The bot is online!!');
@@ -55,7 +51,7 @@ bot.on('message', message => {
 
     switch(args[0]){
         case 'help':
-            message.channel.send('-r(1/2)\n-nr(1/2)\n-game(1/2)\n-clear(1/2)\n-check');
+            message.channel.send('-r(1/2/3)\n-nr(1/2/3)\n-game(1/2/3)\n-clear(1/2/3)\n-check');
             break;
         case 'game1':
             if (args[1]!=undefined) {
@@ -77,6 +73,16 @@ bot.on('message', message => {
                 message.channel.send('Please retry with a game. !game2 [Game]');
                 break;
             }
+        case 'game3':
+            if (args[1] != undefined) {
+                gameName3 = (args[1]).toUpperCase();
+                message.channel.send(`Queue 3 game: ${gameName3}`);
+                break;
+            }
+            else {
+                message.channel.send('Please retry with a game. !game3 [Game]');
+                break;
+            }
         case 'r1':
             if (playerArray1.indexOf('<@'+ message.author.id +'>') === -1 && teamSpaceAvailable1>0) {
                 playerArray1.push('<@'+ message.author.id +'>');
@@ -87,7 +93,7 @@ bot.on('message', message => {
                 if(teamSpaceAvailable1 === 1)
                     message.channel.send(`You\'ve been added to queue 1\nTeam: ${playerArrString1}, missing ${teamSpaceAvailable1} more player!`)
                 if(playerArray1.length === 5)
-                    message.channel.send(`HELLOOO ${playerArray1}\nGUESS IT\'S TIME TO PLAY ${gameName1}!??!`);
+                    message.channel.send(`Get in here ${playerArray1}\n IT\'S TIME TO PLAY ${gameName1}!??!`);
                 break;
             }
             else if (playerArray1.indexOf('<@'+ message.author.id +'>') !== -1) {
@@ -109,7 +115,7 @@ bot.on('message', message => {
                 if(teamSpaceAvailable2 === 1)
                     message.channel.send(`You\'ve been added to queue 2\nTeam: ${playerArrString2}, missing ${teamSpaceAvailable2} more player!`)
                 if(playerArray2.length === 5)
-                    message.channel.send(`HELLOOO ${playerArray2}\nGUESS IT\'S TIME TO PLAY ${gameName2}!??!`);
+                    message.channel.send(`Get in here ${playerArray2}\n IT\'S TIME TO PLAY ${gameName2}!??!`);
                 break;
             }
             else if (playerArray2.indexOf('<@'+ message.author.id +'>') !== -1) {
@@ -121,6 +127,28 @@ bot.on('message', message => {
                 break;
             }
         break;
+        case 'r3':
+            if (playerArray3.indexOf('<@' + message.author.id + '>') === -1 && teamSpaceAvailable3 > 0) {
+                playerArray3.push('<@' + message.author.id + '>');
+                playerArrString3.push(message.author.username);
+                teamSpaceAvailable3--;
+                if (teamSpaceAvailable3 > 1)
+                    message.channel.send(`You\'ve been added to queue 3\nTeam: ${playerArrString3}, missing ${teamSpaceAvailable3} more players`)
+                if (teamSpaceAvailable3 === 1)
+                    message.channel.send(`You\'ve been added to queue 3\nTeam: ${playerArrString3}, missing ${teamSpaceAvailable3} more player!`)
+                if (playerArray3.length === 4)
+                    message.channel.send(`Get in here ${playerArray3}\n IT\'S TIME TO PLAY ${gameName3}!??!`);
+                break;
+            }
+            else if (playerArray3.indexOf('<@' + message.author.id + '>') !== -1) {
+                message.channel.send('You\'ve already been added to queue 3');
+                break;
+            }
+            else if (teamSpaceAvailable3 === 0) {
+                message.channel.send('Queue 3 is full')
+                break;
+            }
+            break;
         case 'nr1':
             if (playerArray1.indexOf('<@'+ message.author.id +'>') !== -1) {
                 let x = playerArray1.indexOf('<@'+ message.author.id +'>');
@@ -146,7 +174,20 @@ bot.on('message', message => {
                 else {
                 message.channel.send('You\'re already removed from queue 2');
                 break;
-            }        
+            } 
+        case 'nr3':
+            if (playerArray3.indexOf('<@' + message.author.id + '>') !== -1) {
+                let x = playerArray3.indexOf('<@' + message.author.id + '>');
+                playerArray3.splice(x, 1)
+                playerArrString3.splice(x, 1)
+                teamSpaceAvailable3++;
+                message.channel.send('You\'ve been removed from queue 3')
+                break;
+            }
+            else {
+                message.channel.send('You\'re already removed from queue 3');
+                break;
+            }       
         case 'clear1':
             playerArray1.splice(0, playerArray1.length);
             message.channel.send('Queue 1 cleared');
@@ -161,37 +202,33 @@ bot.on('message', message => {
             gameName2 = '';
             playerArrString2.splice(0, playerArrString2.length);
             break;
+        case 'clear3':
+            playerArray3.splice(0, playerArray3.length);
+            message.channel.send('Queue 3 cleared');
+            teamSpaceAvailable3 = 4;
+            gameName3 = '';
+            playerArrString3.splice(0, playerArrString3.length);
+            break;
         case 'check':
             message.channel.send(`Queue 1: ${playerArray1} | Game: ${gameName1}`);
             message.channel.send(`Queue 2: ${playerArray2} | Game: ${gameName2}`);
+            message.channel.send(`Queue 3: ${playerArray3} | Game: ${gameName3}`);
             break;
         case 'game':
-            message.channel.send('Please enter game(1/2) [game]')
+            message.channel.send('Please enter game(1/2/3) [game]')
             break;
         case 'nr':
-            message.channel.send('Please enter nr(1/2)')
+            message.channel.send('Please enter nr(1/2/3)')
             break;
         case 'r':
-            message.channel.send('Please enter r(1/2)')
+            message.channel.send('Please enter r(1/2/3)')
             break;
         case 'clear':
-            message.channel.send('Please enter clear(1/2)')
+            message.channel.send('Please enter clear(1/2/3)')
             break;
-        case 'leave' :
+        /*case 'leave' :
             voiceChannel.leave();
             break;
-        case 'reviveme' :
-            if (isReady && message.content === '!join') {
-                const channel = bot.channels.cache.get("389588830316920833");
-            if (!channel) return console.error("The channel does not exist!");
-                channel.join().then(connection => {
-                console.log("Successfully connected.");
-                    }).catch(e => {
-                console.error(e);
-                });
-                isReady = false;
-                break;
-            }
         case 'remove' :
             if (playerArray1.indexOf('<@'+args[1].slice(3,args[1].length-1)+'>') != -1) {
                 var y = playerArray1.indexOf('<@'+args[1].slice(3,args[1].length-1)+'>');
@@ -205,8 +242,8 @@ bot.on('message', message => {
                 console.log(playerArray1)
                 message.channel.send('@player not found/no name entered');
                 break;
-            }
-        case 'r3' :
+            }*/
+        case 'r4' :
             message.channel.send(`You know who's a slacker?? Not this kid --->> ${message.author.username} <<---`);
         /*case 'poll' :
             const Embed = new RichEmbed()
