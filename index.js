@@ -209,6 +209,21 @@ bot.on('message', message => {
             gameName3 = '';
             playerArrString3.splice(0, playerArrString3.length);
             break;
+        case 'clearall':
+            message.channel.send('All queues cleared');
+            playerArray1.splice(0, playerArray1.length);
+            teamSpaceAvailable1 = 5;
+            gameName1 = '';
+            playerArrString1.splice(0, playerArrString1.length);
+            playerArray2.splice(0, playerArray2.length);
+            teamSpaceAvailable2 = 5;
+            gameName2 = '';
+            playerArrString2.splice(0, playerArrString2.length);
+            playerArray3.splice(0, playerArray3.length);
+            teamSpaceAvailable3 = 4;
+            gameName3 = '';
+            playerArrString3.splice(0, playerArrString3.length);
+            break;
         case 'check':
             message.channel.send(`Queue 1: ${playerArray1} | Game: ${gameName1}`);
             message.channel.send(`Queue 2: ${playerArray2} | Game: ${gameName2}`);
@@ -224,7 +239,7 @@ bot.on('message', message => {
             message.channel.send('Please enter r(1/2/3)')
             break;
         case 'clear':
-            message.channel.send('Please enter clear(1/2/3)')
+            message.channel.send('Please enter clear(1/2/3/all)')
             break;
         /*case 'leave' :
             voiceChannel.leave();
