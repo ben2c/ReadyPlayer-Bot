@@ -149,6 +149,53 @@ bot.on('message', message => {
                 break;
             }
             break;
+        case 'rall':
+            message.channel.send('You\'ve been added to all queues');
+            if (playerArray1.indexOf('<@' + message.author.id + '>') === -1 && teamSpaceAvailable1 > 0) {
+                playerArray1.push('<@' + message.author.id + '>');
+                playerArrString1.push(message.author.username);
+                teamSpaceAvailable1--;
+                /*
+                if (teamSpaceAvailable1 > 1)
+                    message.channel.send(`You\'ve been added to queue 1\nTeam: ${playerArrString1}, missing ${teamSpaceAvailable1} more players`)
+                if (teamSpaceAvailable1 === 1)
+                    message.channel.send(`You\'ve been added to queue 1\nTeam: ${playerArrString1}, missing ${teamSpaceAvailable1} more player!`)
+                */
+                if (playerArray1.length === 5)
+                    message.channel.send(`Get in here ${playerArray1}\n IT\'S TIME TO PLAY ${gameName1}!??!`);
+                break;
+            }
+
+            if (playerArray2.indexOf('<@' + message.author.id + '>') === -1 && teamSpaceAvailable2 > 0) {
+                playerArray2.push('<@' + message.author.id + '>');
+                playerArrString2.push(message.author.username);
+                teamSpaceAvailable2--;
+                /*
+                if (teamSpaceAvailable2 > 1)
+                    message.channel.send(`You\'ve been added to queue 2\nTeam: ${playerArrString2}, missing ${teamSpaceAvailable2} more players`)
+                if (teamSpaceAvailable2 === 1)
+                    message.channel.send(`You\'ve been added to queue 2\nTeam: ${playerArrString2}, missing ${teamSpaceAvailable2} more player!`)
+                */
+                if (playerArray2.length === 5)
+                    message.channel.send(`Get in here ${playerArray2}\n IT\'S TIME TO PLAY ${gameName2}!??!`);
+                break;
+            }
+
+            if (playerArray3.indexOf('<@' + message.author.id + '>') === -1 && teamSpaceAvailable3 > 0) {
+                playerArray3.push('<@' + message.author.id + '>');
+                playerArrString3.push(message.author.username);
+                teamSpaceAvailable3--;
+                /*
+                if (teamSpaceAvailable3 > 1)
+                    message.channel.send(`You\'ve been added to queue 3\nTeam: ${playerArrString3}, missing ${teamSpaceAvailable3} more players`)
+                if (teamSpaceAvailable3 === 1)
+                    message.channel.send(`You\'ve been added to queue 3\nTeam: ${playerArrString3}, missing ${teamSpaceAvailable3} more player!`)
+                */
+                if (playerArray3.length === 4)
+                    message.channel.send(`Get in here ${playerArray3}\n IT\'S TIME TO PLAY ${gameName3}!??!`);
+                break;
+            }
+            break;
         case 'nr1':
             if (playerArray1.indexOf('<@'+ message.author.id +'>') !== -1) {
                 let x = playerArray1.indexOf('<@'+ message.author.id +'>');
