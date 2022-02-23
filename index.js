@@ -163,7 +163,6 @@ bot.on('message', message => {
                 */
                 if (playerArray1.length === 5)
                     message.channel.send(`Get in here ${playerArray1}\n IT\'S TIME TO PLAY ${gameName1}!??!`);
-                break;
             }
 
             if (playerArray2.indexOf('<@' + message.author.id + '>') === -1 && teamSpaceAvailable2 > 0) {
@@ -178,7 +177,6 @@ bot.on('message', message => {
                 */
                 if (playerArray2.length === 5)
                     message.channel.send(`Get in here ${playerArray2}\n IT\'S TIME TO PLAY ${gameName2}!??!`);
-                break;
             }
 
             if (playerArray3.indexOf('<@' + message.author.id + '>') === -1 && teamSpaceAvailable3 > 0) {
@@ -193,7 +191,6 @@ bot.on('message', message => {
                 */
                 if (playerArray3.length === 4)
                     message.channel.send(`Get in here ${playerArray3}\n IT\'S TIME TO PLAY ${gameName3}!??!`);
-                break;
             }
             break;
         case 'nr1':
