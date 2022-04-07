@@ -72,4 +72,4 @@ client.on('messageCreate', message => {
 })
 
 //(1)for local deployment
-client.login('OTYwNTY5MTE3NjYyOTEyNjA0.YksVtA.T1q7mRJu3jjxihaNrvUM2pk8JzA');
+//client.login('');
