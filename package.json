@@ -15,6 +15,6 @@
   "author": "Ben",
   "license": "UNLICENSED",
   "dependencies": {
-    "discord.js": "^12.3.1"
+    "discord.js": "^12.5.3"
   }
 }

@@ -49,7 +49,7 @@ client.on('message', message => {
 
   switch (args[0]) {
     case 'help':
-      message.channel.send({ embeds: [help] });
+      message.channel.send(help);
       break;
     case 'new':
       newQueue(args, message);
