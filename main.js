@@ -8,7 +8,8 @@ import { deleteQueue } from './actions/delete.js';
 import { Client, Intents, DiscordAPIError } from 'discord.js';
 import Discord from 'discord.js';
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+//const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const client = new Discord.Client();
 const prefix = '?';
 
 client.login(process.env.TOKEN);
