@@ -32,7 +32,7 @@ export const readyUp = (args, message) => {
   }
 
   else if (args[1] <= playerArr.length) {
-    message.channel.send(`You have been added to queue ${args[1]}`);
+    message.channel.send(`You have been added to queue ${args[1]}: ${playerArrString[args[1] - 1]}`);
     playerArr[args[1] - 1].push('<@' + message.author.id + '>');
     playerArrString[args[1] - 1].push(message.author.username);
     if (playerArr[args[1] - 1].length == queueSize[args[1] - 1]) {
