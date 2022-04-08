@@ -13,7 +13,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 const prefix = '?';
 
 //For hosting on Heroku
-//client.login(process.env.TOKEN);
+client.login(process.env.TOKEN);
 
 let [playerArr, gameNameArr, playerArrString, queueSize] = [[[], []], [["League"], ["Valorant"]], [[], []], [[5], [5]]];
 
@@ -73,4 +73,4 @@ client.on('message', message => {
 })
 
 //for local deployment
-client.login('NzU1NTIzOTQ0NDIwODY4MTA2.X2EigQ.vweUTii7GDdNU0-2SOyyZTRxeNY');
+//client.login('');
