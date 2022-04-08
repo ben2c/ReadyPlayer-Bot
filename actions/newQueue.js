@@ -19,7 +19,7 @@ export const newQueue = (args, message) => {
   else {
     message.channel.send(`Please state a game + proper queue size`);
   }
-  if (args[2] == 1) {
+  if (args[2] == 1 && args[1] && args[2] && args[2] > 0 && args[2].match(/^\d+$/)) {
     message.channel.send(`Get in here ${playerArr[playerArr.length - 1]} It's time to play ${gameNameArr[playerArr.length - 1]}!... by yourself... sad...`);
   }
 }
