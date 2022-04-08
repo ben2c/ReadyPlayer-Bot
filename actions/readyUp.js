@@ -38,7 +38,7 @@ export const readyUp = (args, message) => {
       message.channel.send(`Get in here ${playerArr[args[1] - 1]} It's time to play ${gameNameArr[args[1] - 1]}!`);
     }
     else {
-      message.channel.send(`You have been added to queue ${args[1]}: ${playerArrString[args[1] - 1]}`);
+      message.channel.send(`Queue for ${gameNameArr[args[1] - 1]}: ${playerArrString[args[1] - 1]} | Missing ${queueSize[args[1] - 1] - playerArr[args[1] - 1].length} more!`);
     }
   }
 
