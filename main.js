@@ -8,8 +8,8 @@ import { deleteQueue } from './actions/delete.js';
 import { Client, Intents, DiscordAPIError } from 'discord.js';
 import Discord from 'discord.js';
 
-//const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-const client = new Discord.Client();
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+//const client = new Discord.Client();
 const prefix = '?';
 
 //For hosting on Heroku
@@ -39,8 +39,7 @@ const help = new Discord.MessageEmbed()
     { name: 'delete', value: 'Delete all available queues' },
     { name: 'check [queue #]', value: 'Check a queue' },
     { name: 'check', value: 'Check all queues' },
-  )
-  .setImage('');
+  );
 
 client.on('message', message => {
   if (!message.content.startsWith('?')) return;
@@ -49,7 +48,7 @@ client.on('message', message => {
 
   switch (args[0]) {
     case 'help':
-      message.channel.send(`${help}`);
+      message.channel.send(help);
       break;
     case 'new':
       newQueue(args, message);
