@@ -2,7 +2,7 @@ import { playerArr, playerArrString, gameNameArr, queueSize } from "../main.js";
 
 export const newQueue = (args, message) => {
 
-  loweredArr = gameNameArr.map(e => {
+  let loweredArr = gameNameArr.map(e => {
     return e.toLowerCase();
   })
 
