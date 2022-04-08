@@ -3,10 +3,10 @@ import { playerArr, playerArrString, gameNameArr, queueSize } from "../main.js";
 export const newQueue = (args, message) => {
 
   let loweredArr = gameNameArr.map(e => {
-    return e.toLowerCase();
+    return e.toString().toLowerCase();
   })
 
-  if (loweredArr.indexOf(args[1].toLowerCase()) !== -1) {
+  if (loweredArr.indexOf(args[1].toString().toLowerCase()) !== -1) {
     message.channel.send(`This game queue already exist`);
   }
   else if (args[1] && args[2] && args[2] > 0 && args[2].match(/^\d+$/)) {
