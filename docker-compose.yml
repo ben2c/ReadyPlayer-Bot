@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    environment:
+      - DISCORD_TOKEN=$DISCORD_TOKEN
+    stdin_open: true
+    tty: true
