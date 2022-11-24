@@ -5,6 +5,7 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
+    "start": "node main.js",
     "test": " "
   },
   "repository": {
@@ -15,6 +16,7 @@
   "author": "Ben",
   "license": "UNLICENSED",
   "dependencies": {
-    "discord.js": "^12.5.3"
+    "discord.js": "^12.5.3",
+    "dotenv": "^16.0.3"
   }
 }
