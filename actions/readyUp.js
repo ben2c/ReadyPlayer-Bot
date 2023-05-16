@@ -1,9 +1,12 @@
 import { playerArr, playerArrString, gameNameArr, queueSize } from "../main.js";
 
+const hasValidArgs = (args) => args.reduce((isValid, arg) => {
+  const num = parseInt(arg);
+  return isValid && !(num === NaN || num < 0 || num >= gameNameArr.length);
+}, true);
+
 const readyForGame = (gameIndex, sendMessage) => {
-  if (gameIndex >= gameNameArr.length || !gameIndex.match(/^\d+$/) || gameIndex < 0) {
-    sendMessage && message.channel.send(`Please enter a valid queue number`);
-  } else if (playerArr[gameIndex].indexOf('<@' + message.author.id + '>') !== -1) {
+  if (playerArr[gameIndex].indexOf('<@' + message.author.id + '>') !== -1) {
     sendMessage && message.channel.send(`You're already in this queue`);
   } else if (playerArr[gameIndex].length == queueSize[gameIndex]) {
     sendMessage && message.channel.send(`Queue ${gameIndex + 1} is full`);
@@ -18,16 +21,21 @@ const readyForGame = (gameIndex, sendMessage) => {
   } else {
     sendMessage && message.channel.send(`Final catch, idk what the fuck you entered, allow me to fix it`);
   }
-}
+};
 
 export const readyUp = (args, message) => {
+  const addToAllQueues = args.length <= 1;
+  const postArgs = args.slice(1);
   if (playerArr.length === 0) {
     message.channel.send(`No queues avaliable`);
+  } else if (addToAllQueues || !hasValidArgs(postArgs)) {
+    message.channel.send(`Please enter valid queue numbers`);
   } else {
-    const addToAllQueues = args.length <= 1;
-    const games = addToAllQueues ? Array.from(Array(playerArr.length).keys()) : args.slice(1).map(i => i - 1);
+    const games = addToAllQueues
+      ? Array.from(Array(playerArr.length).keys()) 
+      : postArgs.map(i => i - 1);
     games.forEach((gameIndex) => {
       readyForGame(gameIndex, !addToAllQueues);
-    })
+    });
   }
 }
