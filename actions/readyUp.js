@@ -25,7 +25,7 @@ export const readyUp = (args, message) => {
     message.channel.send(`No queues avaliable`);
   } else {
     const addToAllQueues = args.length <= 1;
-    const games = addToAllQueues ? Array.from(Array(playerArr.length).keys()) : args.slice(1);
+    const games = addToAllQueues ? Array.from(Array(playerArr.length).keys()) : args.slice(1).map(i => i - 1);
     games.forEach((gameIndex) => {
       readyForGame(gameIndex, !addToAllQueues);
     })
