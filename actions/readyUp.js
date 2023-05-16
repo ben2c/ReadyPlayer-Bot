@@ -31,6 +31,9 @@ export const readyUp = (args, message) => {
   } else if (!addToAllQueues && !hasValidArgs(postArgs)) {
     message.channel.send(`Please enter valid queue numbers`);
   } else {
+    if (addToAllQueues) {
+      message.channel.send('You\'ve been added to all queues');
+    }
     const games = addToAllQueues
       ? Array.from(Array(playerArr.length).keys()) 
       : postArgs.map(i => i - 1);
