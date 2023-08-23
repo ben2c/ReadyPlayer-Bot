@@ -5,16 +5,17 @@ import { check } from './actions/check.js';
 import { clear } from './actions/clear.js';
 import { deleteQueue } from './actions/delete.js';
 
-import { Client, Intents } from 'discord.js';
+import { Client, Intents} from 'discord.js';
 import Discord from 'discord.js';
 
-import * as dotenv from 'dotenv'
-dotenv.config()
+//import * as dotenv from 'dotenv'
+//dotenv.config()
+//const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const client = new Discord.Client();
 const prefix = '?';
 
-client.login(process.env.DISCORD_TOKEN);
+//client.login(process.env.DISCORD_TOKEN);
 
 let [playerArr, gameNameArr, playerArrString, queueSize] = [[[], []], [["League"], ["Valorant"]], [[], []], [[5], [5]]];
 
@@ -72,3 +73,5 @@ client.on('message', message => {
   }
 
 })
+
+client.login('NzU1NTIzOTQ0NDIwODY4MTA2.GQoe_b.kx-DPP4bKCuzYGBUMDaoaJWaMmfnx2aY-kwF0k');
