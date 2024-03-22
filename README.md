@@ -22,3 +22,13 @@ Refresh Server
 ```bash
 docker-compose down
 ```
+
+To Automate RasPi for program to start on startup add to rc.local file:
+
+```bash
+sudo nano /etc/rc.local
+```
+
+```bash
+docker-compose up --detach /Projects/playerReadyBot &
+```
